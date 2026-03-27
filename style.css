@@ -661,3 +661,156 @@ footer {
     /* フォントを可愛らしい手書き風に */
     font-family: 'Kiwi Maru', 'Mochiy Pop P One', cursive, sans-serif;
 }
+
+/* ========================================
+   レスポンシブ対応 (Responsive Design)
+   ======================================== */
+
+/* --- タブレット・スマホ共通 (max-width: 768px) --- */
+@media (max-width: 768px) {
+
+    /* ヘッダー */
+    header h1 {
+        font-size: 1.3em;
+        letter-spacing: 1px;
+        padding: 0 10px;
+    }
+
+    /* ナビゲーション - 横スクロール対応 */
+    nav {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        text-align: left;
+        padding: 0.4em 0;
+        scrollbar-width: none; /* Firefox */
+    }
+    nav::-webkit-scrollbar {
+        display: none; /* Chrome / Safari */
+    }
+    nav a {
+        margin: 0 12px;
+        font-size: 0.82em;
+        display: inline-block;
+        padding: 8px 0;
+    }
+
+    /* ヒーローセクション */
+    .hero {
+        height: 280px;
+    }
+
+    /* コラージュウィンドウ - スマホでは非表示（画面が狭すぎるため） */
+    .hero-collage-container {
+        display: none;
+    }
+
+    /* 動画オーバーレイ - 中央配置・小さく */
+    .hero-video-overlay {
+        width: 200px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        border-radius: 6px;
+    }
+
+    /* ヒーローテキスト - 左下 */
+    .hero-text-container {
+        left: 10px;
+        bottom: 8px;
+        padding: 6px 8px;
+    }
+    .hero-text-container h1 {
+        font-size: 1.3em;
+        white-space: normal; /* 折り返し許可 */
+        border-right: none;
+        animation: none; /* タイピングアニメーションは無効化 */
+    }
+    .hero-text-container p {
+        font-size: 0.8em;
+    }
+
+    /* コンテナ */
+    .container {
+        width: 94%;
+        padding: 20px 15px;
+        margin: 15px auto;
+    }
+
+    .section h2 {
+        font-size: 1.4em;
+    }
+
+    /* YouTube埋め込みはpadding-bottomで比率が保たれるためそのまま */
+
+    /* コンタクトフォーム - width計算を修正 */
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* SNSアイコン */
+    .social-links {
+        gap: 20px;
+    }
+}
+
+/* --- スマートフォン専用 (max-width: 480px) --- */
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 1.05em;
+    }
+
+    nav a {
+        margin: 0 8px;
+        font-size: 0.78em;
+    }
+
+    .hero {
+        height: 240px;
+    }
+
+    .hero-video-overlay {
+        width: 160px;
+    }
+
+    .hero-text-container h1 {
+        font-size: 1.1em;
+    }
+
+    .hero-text-container p {
+        font-size: 0.75em;
+    }
+
+    /* コンテナを画面幅いっぱいに */
+    .container {
+        width: 100%;
+        border-radius: 0;
+        padding: 15px 12px;
+        box-shadow: none;
+        margin: 10px auto;
+    }
+
+    .section h2 {
+        font-size: 1.2em;
+    }
+
+    /* 更新履歴 - 日付とテキストを縦並びに */
+    .updates li {
+        flex-direction: column;
+        gap: 4px;
+    }
+    .update-date {
+        margin-right: 0;
+        font-size: 0.85em;
+    }
+
+    /* ナビをハンバーガー的に省スペース化 */
+    nav a {
+        margin: 0 6px;
+        font-size: 0.75em;
+    }
+}
