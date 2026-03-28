@@ -70,7 +70,47 @@ window.addEventListener('load', () => {
 });
 
 
-// ナビゲーションバーのスクロール時の変化
+// ハンバーガーメニュー
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileOverlay = document.getElementById('mobile-menu-overlay');
+
+function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    mobileOverlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    mobileOverlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+// オーバーレイクリックで閉じる
+mobileOverlay.addEventListener('click', closeMenu);
+
+// メニュー内リンクをタップしたら閉じる
+document.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
+
+// Escキーで閉じる
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+});
+
+
 const navBar = document.querySelector('nav');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -101,3 +141,65 @@ const sectionObserver = new IntersectionObserver((entries, observer) => {
 sections.forEach(section => {
     sectionObserver.observe(section);
 });
+
+// ============================================================
+// プロフィールモーダル
+// ============================================================
+(function () {
+    var chara    = document.getElementById('profile-chara');
+    var modal    = document.getElementById('profile-modal');
+    var closeBtn = document.getElementById('profile-modal-close');
+    if (!chara || !modal) return;
+
+    var opened = false;
+
+    function openProfile() {
+        if (opened) return;
+        opened = true;
+        chara.classList.remove('idle');
+        chara.style.animation = 'none';
+        void chara.offsetWidth;
+        chara.classList.add('open');
+        chara.style.cursor = 'default';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        if (window.innerWidth <= 768) document.body.style.overflow = 'hidden';
+        setTimeout(function () { chara.classList.add('floating'); }, 1050);
+    }
+
+    function closeProfile() {
+        if (!opened) return;
+        opened = false;
+        chara.classList.remove('open', 'floating');
+        chara.style.animation = 'none';
+        void chara.offsetWidth;
+        chara.classList.add('idle');
+        chara.style.cursor = 'pointer';
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    chara.addEventListener('click', openProfile);
+    closeBtn.addEventListener('click', closeProfile);
+    // Escキー（ハンバーガーと共存：profileが開いていればprofileを閉じる）
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && opened) closeProfile();
+    });
+})();
+
+// ============================================================
+// ページトップへ戻るボタン
+// ============================================================
+(function () {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', function () {
+        btn.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
+
+    btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
