@@ -183,70 +183,66 @@
     <div class="container">
         <section id="profile" class="section profile-section">
             <h2>Profile</h2>
-            <div class="profile-wrapper">
-                <!-- テキスト情報 -->
-                <div class="profile-info">
-                    <table class="profile-table">
-                        <tr><th>名前</th><td>牛タン 紅狐（ぎゅうたん べにこ）</td></tr>
-                        <tr><th>誕生日</th><td>XX月XX日</td></tr>
-                        <tr><th>好きなもの</th><td>牛タン料理・ゲーム・歌</td></tr>
-                        <tr><th>苦手なもの</th><td>（ここに記入）</td></tr>
-                        <tr><th>ひとこと</th><td>いつも応援ありがとう！一緒にたのしもうね！</td></tr>
-                    </table>
-                </div>
-
-                <!-- キャラクター画像（ここを起点にモーダルが出てくる） -->
-                <div class="profile-chara-area">
-                    <div id="profile-chara" class="profile-chara idle" title="クリックしてプロフィールを見る">
-                        <!-- ★ 実際のキャラ立ち絵に差し替え可能 -->
-                        <img src="img/beniko01.png" alt="紅狐" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                        <!-- 画像がない場合のSVGフォールバック -->
-                        <svg style="display:none" width="160" height="280" viewBox="0 0 160 280" overflow="visible" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M108,200 Q154,172 148,235 Q135,264 106,250 Z" fill="#9B1C1C"/>
-                            <path d="M116,215 Q150,188 145,238 Q134,260 110,248 Z" fill="#FFF5EE" opacity="0.88"/>
-                            <ellipse cx="90" cy="198" rx="42" ry="52" fill="#C0392B"/>
-                            <ellipse cx="83" cy="210" rx="21" ry="27" fill="#FFF5EE" opacity="0.7"/>
-                            <path d="M52,178 Q30,172 14,164" stroke="#C0392B" stroke-width="16" stroke-linecap="round" fill="none"/>
-                            <ellipse cx="11" cy="162" rx="14" ry="10" fill="#C0392B"/>
-                            <ellipse cx="88" cy="153" rx="20" ry="14" fill="#C0392B"/>
-                            <circle cx="88" cy="100" r="44" fill="#C0392B"/>
-                            <polygon points="54,70 36,26 78,60" fill="#C0392B"/>
-                            <polygon points="56,66 44,38 72,58" fill="#E8A0A0" opacity="0.65"/>
-                            <polygon points="112,64 126,24 136,66" fill="#C0392B"/>
-                            <polygon points="114,62 126,34 132,64" fill="#E8A0A0" opacity="0.65"/>
-                            <ellipse cx="74" cy="114" rx="20" ry="14" fill="#FFF5EE" opacity="0.85"/>
-                            <ellipse cx="65" cy="97" rx="11" ry="12" fill="#1A0808"/>
-                            <ellipse cx="97" cy="95" rx="9.5" ry="10.5" fill="#1A0808"/>
-                            <ellipse cx="59" cy="91" rx="4.5" ry="5" fill="white" opacity="0.95"/>
-                            <ellipse cx="91" cy="89" rx="3.5" ry="4" fill="white" opacity="0.9"/>
-                            <ellipse cx="67" cy="111" rx="5" ry="3.5" fill="#1A0808"/>
-                            <path d="M62,116 Q67,121 73,118" stroke="#8B0505" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                            <ellipse cx="44" cy="112" rx="12" ry="7" fill="#FF5555" opacity="0.22"/>
-                            <rect x="60" y="243" width="20" height="28" rx="10" fill="#B02020"/>
-                            <rect x="90" y="243" width="20" height="28" rx="10" fill="#B02020"/>
-                        </svg>
-                        <div class="profile-chara-hint">← タップ！</div>
-                    </div>
-                </div>
+            <div class="profile-info">
+                <table class="profile-table">
+                    <tr><th>名前</th><td>牛タン 紅狐（ぎゅうたん べにこ）</td></tr>
+                    <tr><th>誕生日</th><td>XX月XX日</td></tr>
+                    <tr><th>好きなもの</th><td>牛タン料理・ゲーム・歌</td></tr>
+                    <tr><th>苦手なもの</th><td>（ここに記入）</td></tr>
+                    <tr><th>ひとこと</th><td>いつも応援ありがとう！一緒にたのしもうね！</td></tr>
+                </table>
             </div>
 
-            <!-- モーダルパネル（キャラがここを引っ張ってくる） -->
-            <div id="profile-modal" class="profile-modal" aria-hidden="true">
-                <button class="profile-modal-close" id="profile-modal-close" aria-label="閉じる">✕</button>
-                <div class="profile-modal-inner">
-                    <p class="profile-modal-label">CHARACTER PROFILE</p>
-                    <p class="profile-modal-name">牛タン 紅狐</p>
-                    <p class="profile-modal-sub">Gyuutan Beniko</p>
-                    <div class="profile-modal-divider"></div>
-                    <div class="profile-modal-rows">
-                        <div class="profile-modal-row"><span class="pmr-key">BIRTHDAY</span><span class="pmr-val">XX月XX日</span></div>
-                        <div class="profile-modal-row"><span class="pmr-key">LIKES</span><span class="pmr-val">牛タン・ゲーム・歌</span></div>
-                        <div class="profile-modal-row"><span class="pmr-key">PERSONALITY</span><span class="pmr-val">元気いっぱい・天然ボケ</span></div>
-                    </div>
-                    <div class="profile-modal-msg">「いつも応援ありがとう！<br>一緒にたのしもうね！」</div>
+            <!-- キャラ：セクション右端からはみ出す -->
+            <div id="profile-chara-area" class="profile-chara-area">
+                <div class="profile-chara-hint">← タップ！</div>
+                <div id="profile-chara" class="profile-chara idle">
+                    <img src="img/beniko01.png" alt="紅狐"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                    <svg style="display:none" width="160" height="280" viewBox="0 0 160 280"
+                         overflow="visible" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M108,200 Q154,172 148,235 Q135,264 106,250 Z" fill="#9B1C1C"/>
+                        <path d="M116,215 Q150,188 145,238 Q134,260 110,248 Z" fill="#FFF5EE" opacity="0.88"/>
+                        <ellipse cx="90" cy="198" rx="42" ry="52" fill="#C0392B"/>
+                        <ellipse cx="83" cy="210" rx="21" ry="27" fill="#FFF5EE" opacity="0.7"/>
+                        <path d="M52,178 Q30,172 14,164" stroke="#C0392B" stroke-width="16" stroke-linecap="round" fill="none"/>
+                        <ellipse cx="11" cy="162" rx="14" ry="10" fill="#C0392B"/>
+                        <ellipse cx="88" cy="153" rx="20" ry="14" fill="#C0392B"/>
+                        <circle cx="88" cy="100" r="44" fill="#C0392B"/>
+                        <polygon points="54,70 36,26 78,60" fill="#C0392B"/>
+                        <polygon points="56,66 44,38 72,58" fill="#E8A0A0" opacity="0.65"/>
+                        <polygon points="112,64 126,24 136,66" fill="#C0392B"/>
+                        <polygon points="114,62 126,34 132,64" fill="#E8A0A0" opacity="0.65"/>
+                        <ellipse cx="74" cy="114" rx="20" ry="14" fill="#FFF5EE" opacity="0.85"/>
+                        <ellipse cx="65" cy="97" rx="11" ry="12" fill="#1A0808"/>
+                        <ellipse cx="97" cy="95" rx="9.5" ry="10.5" fill="#1A0808"/>
+                        <ellipse cx="59" cy="91" rx="4.5" ry="5" fill="white" opacity="0.95"/>
+                        <ellipse cx="91" cy="89" rx="3.5" ry="4" fill="white" opacity="0.9"/>
+                        <ellipse cx="67" cy="111" rx="5" ry="3.5" fill="#1A0808"/>
+                        <path d="M62,116 Q67,121 73,118" stroke="#8B0505" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        <ellipse cx="44" cy="112" rx="12" ry="7" fill="#FF5555" opacity="0.22"/>
+                        <rect x="60" y="243" width="20" height="28" rx="10" fill="#B02020"/>
+                        <rect x="90" y="243" width="20" height="28" rx="10" fill="#B02020"/>
+                    </svg>
                 </div>
             </div>
         </section>
+
+        <!-- プロフィールモーダル（position:fixed でどこからでも表示） -->
+        <div id="profile-modal" class="profile-modal" aria-hidden="true">
+            <button class="profile-modal-close" id="profile-modal-close" aria-label="閉じる">✕</button>
+            <p class="profile-modal-label">CHARACTER PROFILE</p>
+            <p class="profile-modal-name">牛タン 紅狐</p>
+            <p class="profile-modal-sub">Gyuutan Beniko</p>
+            <div class="profile-modal-divider"></div>
+            <div class="profile-modal-rows">
+                <div class="profile-modal-row"><span class="pmr-key">BIRTHDAY</span><span class="pmr-val">XX月XX日</span></div>
+                <div class="profile-modal-row"><span class="pmr-key">LIKES</span><span class="pmr-val">牛タン・ゲーム・歌</span></div>
+                <div class="profile-modal-row"><span class="pmr-key">PERSONALITY</span><span class="pmr-val">元気いっぱい・天然ボケ</span></div>
+            </div>
+            <div class="profile-modal-msg">「いつも応援ありがとう！<br>一緒にたのしもうね！」</div>
+        </div>
+        <div id="profile-modal-overlay" class="profile-modal-overlay"></div>
 
         <section id="updates" class="section">
             <h2>Updates & News</h2>
