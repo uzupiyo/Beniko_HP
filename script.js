@@ -146,43 +146,51 @@ sections.forEach(section => {
 // プロフィールモーダル
 // ============================================================
 (function () {
-    var chara    = document.getElementById('profile-chara');
-    var modal    = document.getElementById('profile-modal');
-    var closeBtn = document.getElementById('profile-modal-close');
-    if (!chara || !modal) return;
+    var charaArea = document.getElementById('profile-chara-area');
+    var chara     = document.getElementById('profile-chara');
+    var modal     = document.getElementById('profile-modal');
+    var closeBtn  = document.getElementById('profile-modal-close');
+    var overlay   = document.getElementById('profile-modal-overlay');
+    if (!charaArea || !chara || !modal) return;
 
     var opened = false;
 
     function openProfile() {
         if (opened) return;
         opened = true;
-        chara.classList.remove('idle');
+        // キャラエリアをスライドイン
+        charaArea.classList.add('open');
+        // 内側キャラのアニメをリセット（アイドル→フロートへ切り替え準備）
+        chara.classList.remove('idle', 'floating');
         chara.style.animation = 'none';
         void chara.offsetWidth;
-        chara.classList.add('open');
-        chara.style.cursor = 'default';
+        // モーダルを表示
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
-        if (window.innerWidth <= 768) document.body.style.overflow = 'hidden';
-        setTimeout(function () { chara.classList.add('floating'); }, 1050);
+        // オーバーレイ（スマホ）
+        if (overlay) overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        // 着地後にフロートアニメ開始
+        setTimeout(function () { chara.classList.add('floating'); }, 1100);
     }
 
     function closeProfile() {
         if (!opened) return;
         opened = false;
-        chara.classList.remove('open', 'floating');
+        charaArea.classList.remove('open');
+        chara.classList.remove('floating');
         chara.style.animation = 'none';
         void chara.offsetWidth;
         chara.classList.add('idle');
-        chara.style.cursor = 'pointer';
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
+        if (overlay) overlay.classList.remove('open');
         document.body.style.overflow = '';
     }
 
-    chara.addEventListener('click', openProfile);
-    closeBtn.addEventListener('click', closeProfile);
-    // Escキー（ハンバーガーと共存：profileが開いていればprofileを閉じる）
+    charaArea.addEventListener('click', openProfile);
+    closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeProfile(); });
+    if (overlay) overlay.addEventListener('click', closeProfile);
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && opened) closeProfile();
     });
